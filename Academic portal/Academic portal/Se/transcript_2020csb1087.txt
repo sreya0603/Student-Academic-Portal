@@ -1,0 +1,11 @@
+Name: sreya
+Entry Number: 2020csb1087
+Batch Year: 2020
+Department: CSE
+
+CGPA: 7.36
+
+Course Code          Grade                Status              
+cs202                8                    c                   
+cs201                7                    c                   
+cs302                7                    c                   

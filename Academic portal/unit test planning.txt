@@ -1,0 +1,165 @@
+Unit Test Plan
+Student Class
+Test dashboard method with valid student email as input and valid user input options.
+
+Expected Result: The method should execute successfully and complete all the selected actions without throwing any errors.
+Test dashboard method with invalid student email as input and valid user input options.
+
+Expected Result: The method should throw an error or exception indicating invalid email address and prompt the user to enter a valid email address.
+Test dashboard method with valid student email as input and invalid user input options.
+
+Expected Result: The method should prompt the user to enter valid input options and continue to do so until valid options are entered. It should not throw any errors or exceptions.
+Professor Class
+Test dashboard method with valid professor email as input and valid user input options.
+
+Expected Result: The method should execute successfully and complete all the selected actions without throwing any errors.
+Test dashboard method with invalid professor email as input and valid user input options.
+
+Expected Result: The method should throw an error or exception indicating invalid email address and prompt the user to enter a valid email address.
+Test dashboard method with valid professor email as input and invalid user input options.
+
+Expected Result: The method should prompt the user to enter valid input options and continue to do so until valid options are entered. It should not throw any errors or exceptions.
+AcademicOffice Class
+Test dashboard method with valid user input options.
+
+Expected Result: The method should execute successfully and complete all the selected actions without throwing any errors.
+Test dashboard method with invalid user input options.
+
+Expected Result: The method should prompt the user to enter valid input options and continue to do so until valid options are entered. It should not throw any errors or exceptions.
+STgrades Class
+Test viewgrade method with valid student id as input.
+
+Expected Result: The method should return the grades of the specified student as a string without throwing any errors.
+Test ComputeCgpa method with valid student id as input.
+
+Expected Result: The method should return the CGPA of the specified student as a double without throwing any errors.
+STregister Class
+Test updateRegister method with valid student id and boolean values as input.
+Expected Result: The method should update the course registration status of the specified student without throwing any errors.
+profGrade Class
+Test viewGrades method with valid professor name as input.
+
+Expected Result: The method should return the grades of all the students taught by the specified professor as a string without throwing any errors.
+Test updateGrades method with valid professor name as input.
+
+Expected Result: The method should update the grades of the specified student for the specified course without throwing any errors.
+profRegister Class
+Test registerCourse method with valid professor name as input.
+
+Expected Result: The method should update the course registration status of the specified student for the specified course without throwing any errors.
+Test deregisterCourse method with valid professor name as input.
+
+Expected Result: The method should update the course registration status of the specified student for the specified course without throwing any errors.
+Test UpdateregisterCourse method with valid professor name as input.
+
+Expected Result: The method should update the course registration details of the specified course without throwing any errors.
+acadEdit Class
+Test editCourseCatalog method.
+Expected Result: The method should allow the user to add or remove courses from the course catalog without throwing any errors.
+acadGrades Class
+Test viewGradesOfAllStudents
+
+
+
+Test the STregister class:
+
+Test the updateRegister() method:
+Test that it adds a course to the registered courses list when the second parameter is true.
+Test that it removes a course from the registered courses list when the second parameter is false.
+Test that it throws an IllegalArgumentException if the first parameter is null.
+Test the STgrades class:
+
+Test the viewgrade() method:
+Test that it returns the correct grade for a given student ID.
+Test that it throws an IllegalArgumentException if the student ID is null.
+Test the ComputeCgpa() method:
+Test that it returns the correct CGPA for a given student ID.
+Test that it throws an IllegalArgumentException if the student ID is null.
+Test the curriculum class:
+
+Test the checkGraduationEligibility() method:
+Test that it returns true if the student has completed all required courses.
+Test that it returns false if the student has not completed all required courses.
+Test that it throws an IllegalArgumentException if the student ID is null.
+Test the student class:
+
+Test the dashboard() method:
+Test that it allows the student to register for a course.
+Test that it allows the student to deregister from a course.
+Test that it allows the student to view their grades.
+Test that it allows the student to compute their current CGPA.
+Test that it allows the student to check their graduation eligibility.
+Test that it logs out the student when they choose option 6.
+Test the profGrade class:
+
+Test the viewGrades() method:
+Test that it returns the correct grades for a given professor.
+Test that it throws an IllegalArgumentException if the professor name is null.
+Test the updateGrades() method:
+Test that it updates the grade for a given student and course.
+Test that it throws an IllegalArgumentException if the professor name is null.
+Test the profRegister class:
+
+Test the registerCourse() method:
+Test that it adds a course to the list of courses offered by the professor.
+Test that it throws an IllegalArgumentException if the professor name is null.
+Test the deregisterCourse() method:
+Test that it removes a course from the list of courses offered by the professor.
+Test that it throws an IllegalArgumentException if the professor name is null.
+Test the UpdateregisterCourse() method:
+Test that it updates the list of courses offered by the professor.
+Test that it throws an IllegalArgumentException if the professor name is null.
+Test the professor class:
+
+Test the dashboard() method:
+Test that it allows the professor to view grades for all students.
+Test that it allows the professor to register for a course.
+Test that it allows the professor to deregister from a course.
+Test that it allows the professor to update the course offering.
+Test that it allows the professor to update the grades for a course.
+Test that it logs out the professor when they choose option 6.
+Test the acadEdit class:
+
+Test the editCourseCatalog() method:
+Test that it allows the academic office to add a new course.
+Test that it allows the academic office to delete a course.
+Test that it allows the academic office to update a course.
+
+
+
+Unit Test Plan for acadGrades Class
+
+Test Case 1: Test viewGradesOfAllStudents Method
+Test if the method viewGradesOfAllStudents retrieves and prints all grades of students who have completed a course successfully.
+
+Test Input: A valid connection to the database
+
+Expected Output: The method should print the following columns for each student: name, entry number, course code, and grade.
+
+Test Case 2: Test generateTranscript Method with Valid Input
+Test if the method generateTranscript generates a transcript file with the correct details for a given student entry number.
+
+Test Input: A valid connection to the database, and a valid entry number of a student who has completed courses.
+
+Expected Output: The method should generate a file named transcript_entryNumber.txt with the following details: Name, Entry Number, Batch Year, Department, CGPA, Course Code, Grade, and Status.
+
+Test Case 3: Test generateTranscript Method with Invalid Input
+Test if the method generateTranscript handles invalid entry numbers correctly.
+
+Test Input: A valid connection to the database, and an invalid entry number.
+
+Expected Output: The method should print an error message saying that no student was found with the given entry number.
+
+Test Case 4: Test ComputeCgpa Method with Valid Input
+Test if the method ComputeCgpa computes the CGPA correctly for a given student entry number.
+
+Test Input: A valid connection to the database, and a valid entry number of a student who has completed courses.
+
+Expected Output: The method should compute the CGPA for the student using the grades of all completed courses, and return the correct value.
+
+Test Case 5: Test ComputeCgpa Method with Invalid Input
+Test if the method ComputeCgpa handles invalid entry numbers correctly.
+
+Test Input: A valid connection to the database, and an invalid entry number.
+
+Expected Output: The method should return -1 indicating an error.

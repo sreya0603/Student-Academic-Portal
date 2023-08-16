@@ -1,0 +1,132 @@
+This is the database. insert these table in the database.
+
+CREATE TABLE courses(
+  code text NOT NULL PRIMARY KEY,
+  title text NOT NULL,
+  LTP text NOT NULL,
+  credits int,
+  prerequisites text[]
+);
+
+
+CREATE TABLE Faculty (
+  nam text NOT NULL,
+  department text NOT NULL,
+  email_id text NOT NULL PRIMARY KEY,
+  FOREIGN KEY (email_id) REFERENCES Users(email_id) ON DELETE CASCADE
+);
+
+CREATE TABLE CourseOfferings (
+  code text NOT NULL,
+  proffesor text NOT NULL,
+  semester int NOT NULL,
+  yearr int NOT NULL,
+  cgpa_constraint DECIMAL(3,2),
+  statuss text NOT NULL,
+  PRIMARY KEY (code, semester,yearr),
+  FOREIGN KEY (code) REFERENCES Courses(code) ON DELETE CASCADE
+);
+
+
+CREATE TABLE students (
+  stud_nam text,
+  entry_number text PRIMARY KEY,
+  email_id text,
+  department text,
+  batch_year int,
+  FOREIGN KEY (email_id) REFERENCES Users(email_id) ON DELETE CASCADE
+);
+
+
+CREATE TABLE stud_course_reg (
+  id SERIAL NOT NULL PRIMARY KEY,
+  entry_number text,
+  course_code text,
+  statuss text,
+  grade int,
+  semester int NOT NULL,
+  yearr int NOT NULL,
+  FOREIGN KEY (course_code,semester,yearr) REFERENCES CourseOfferings (code,semester,yearr) ON DELETE CASCADE,
+  FOREIGN KEY (entry_number) REFERENCES students (entry_number) ON DELETE CASCADE
+);
+
+CREATE TABLE Users (
+  user_id SERIAL NOT NULL,
+  email_id text NOT NULL,
+  username text NOT NULL,
+  passwordd text NOT NULL,
+  rolee text NOT NULL,
+  PRIMARY KEY (email_id)
+);
+
+
+CREATE TABLE Curriculum (
+  id int PRIMARY KEY,
+  program_name text NOT NULL,
+  program_core text[] NOT NULL,
+  program_electives text[] NOT NULL,
+  btp_capstone_course text[] NOT NULL
+);
+
+
+CREATE TABLE program_core (
+  code TEXT NOT NULL PRIMARY KEY,
+  curriculum_id INTEGER
+);
+
+CREATE TABLE program_elective (
+  code TEXT NOT NULL PRIMARY KEY,
+  curriculum_id INTEGER
+);
+
+CREATE TABLE btp_capstone (
+  code TEXT NOT NULL PRIMARY KEY,
+  curriculum_id INTEGER
+);
+
+CREATE TABLE stud_course_reg (
+  entry_number TEXT NOT NULL,
+  code TEXT NOT NULL,
+  statuss TEXT NOT NULL,
+  PRIMARY KEY (entry_number, code),
+  FOREIGN KEY (code) REFERENCES courses (code)
+);
+
+____________________________________________________________________________________________________________________________
+test case used
+INSERT INTO CourseOfferings
+VALUES ('cs302', 'neeraj', 3,2023,7,'enrolling');
+INSERT INTO CourseOfferings
+VALUES ('cs202', 'neeraj', 1,2020,7,'completed');
+INSERT INTO CourseOfferings
+VALUES ('cs201', 'neeraj', 1,2020,7,'completed');
+
+
+INSERT INTO faculty ( nam,department,email_id)
+VALUES ('neeraj', 'CSE', 'neeraj@iitrpr.ac.in');
+
+INSERT INTO students ( stud_nam ,entry_number ,email_id,department,batch_year)
+VALUES ('sreya','2020csb1087','2020csb1087@iitrpr.ac.in', 'CSE', 2020);
+INSERT INTO students ( stud_nam ,entry_number ,email_id,department,batch_year)
+VALUES ('s','2020csb1084','2020csb1084@iitrpr.ac.in', 'CSE', 2020);
+
+
+INSERT INTO courses(code,title,LTP,prerequisites,credits)VALUES ('cs302', 'architecture', '3-3-1-4',array['cs202','cs201'],3);
+INSERT INTO courses(code,title,LTP,credits)VALUES ('cs202', 'hi', '3-3-1-4',4);
+INSERT INTO courses(code,title,LTP,credits)VALUES ('cs201', 'ps', '3-3-1-4',4);
+
+INSERT INTO stud_course_reg(entry_number,course_code,statuss,grade,semester,yearr )
+VALUES ('2020csb1087','cs302', 'R', 0,3,2023);
+INSERT INTO stud_course_reg(entry_number,course_code,statuss,grade,semester,yearr  )
+VALUES ('2020csb1087','cs202', 'c', 8,1,2020);
+INSERT INTO stud_course_reg(entry_number,course_code,statuss,grade,semester,yearr )
+VALUES ('2020csb1087','cs201', 'c', 7,1,2020);
+
+INSERT INTO users(email_id,username,passwordd,rolee)values('2020csb1097@iitrpr.ac.in','sreyaG','1234',1);
+INSERT INTO users(email_id,username,passwordd,rolee)values('2020csb1087@iitrpr.ac.in','sreya','12345',3);
+INSERT INTO users(email_id,username,passwordd,rolee)values('2020csb1084@iitrpr.ac.in','s','12',3);
+INSERT INTO users(email_id,username,passwordd,rolee)values('raj@iitrpr.ac.in','raj','123',2);
+
+
+INSERT INTO Curriculum (id, program_name, program_core, program_electives, btp_capstone_course)
+VALUES (1, 'B.Tech CSE', array['cs202', 'cs201', 'cs302'], array['cs303', 'cs304'], array['cs404']);
